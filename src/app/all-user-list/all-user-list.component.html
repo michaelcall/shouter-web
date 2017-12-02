@@ -1,0 +1,54 @@
+
+<div class="container-fluid-no-pd mrg-btn-25">
+  <div class="row">
+    <div class="col-xs-3">
+      <div>something</div>
+    </div>
+    <div class="col-xs-6 text-center">
+      <div>USERS</div>
+    </div>
+    <div class="col-xs-3 text-right">
+      <div (click)="onAddButton()">ADD</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container-fluid-no-pd">
+ <div class="row">
+   <div class="col-xs-3 text-center">
+     <div>NAME</div>
+   </div>
+   <div class="col-xs-3 text-center">
+     <div>N.NAME</div>
+   </div>
+   <div class="col-xs-3 text-center">
+     <div>TEAM</div>
+   </div>
+   <div class="col-xs-3 text-center">
+     <div>STATUS</div>
+   </div>
+ </div>
+</div>
+
+
+<div class="container-fluid-no-pd" *ngFor="let obj of allActiveUsers">
+  <div class="row">
+    <div class="col-xs-3 text-center">
+      <div>{{obj['fn']}} {{obj['ln']}}</div>
+    </div>
+    <div class="col-xs-3 text-center">
+      <div>{{obj['nick-name']}}</div>
+    </div>
+    <div class="col-xs-3 text-center">
+      <div>{{obj['team-name']}}</div>
+    </div>
+    <div class="col-xs-3 text-center">
+      <div>{{obj['state-name']}}</div>
+    </div>
+
+  </div>
+</div>
+
