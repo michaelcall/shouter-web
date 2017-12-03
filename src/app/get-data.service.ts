@@ -13,11 +13,24 @@ import { HttpHeaders } from '@angular/common/http';
 export class getDataService {
   headers:any
 
-  constructor (private  http:Http
-  ) {}
+  constructor (private  http:Http) {}
 
+
+    // GET CALL FOR DATA
   getAssociatedUsers() {
     return this.http.get('http://localhost:3000/users', {withCredentials: true});
+  }
+
+  getAllNflteams() {
+    return this.http.get('http://localhost:3000/teams/all/active', {withCredentials: true});
+  }
+
+
+
+  // POST CALLS FOR COMPONENTS
+  postNewUser(obj) {
+    var body = {'first_name':obj['fn'], 'last_name':obj['ln'], 'nick_name':obj['nickName'], 'team_id':obj['teamId'], 'state_name':'active'}
+    return this.http.post( 'http://localhost:3000/users/add', body, {withCredentials: true})
   }
 
 

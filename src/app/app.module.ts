@@ -12,12 +12,15 @@ import {httpFactory} from './httpFactory';
 import { AllUserListComponent } from './all-user-list/all-user-list.component';
 import { HomeComponent } from './home/home.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'all-users-list', component: AllUserListComponent },
-  { path: 'add-user', component: AddUserComponent }
+  { path: 'add-user', component: AddUserComponent },
+  { path: 'user-profile', component: UserProfileComponent }
+
 ];
 
 
@@ -26,7 +29,8 @@ const appRoutes: Routes = [
     AppComponent,
     AllUserListComponent,
     HomeComponent,
-    AddUserComponent
+    AddUserComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
