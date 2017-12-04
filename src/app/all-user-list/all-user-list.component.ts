@@ -38,6 +38,11 @@ export class AllUserListComponent implements OnInit {
     this.router.navigate(['add-user'])
   }
 
+  onUserRow(obj) {
+    this.getDataService.saveSelectedUser(obj)
+    this.router.navigate(['user-profile'])
+  }
+
 }
 
 

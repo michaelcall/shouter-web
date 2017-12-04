@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
+  selectedUser:any
 
   constructor(
     private getDataService: getDataService,
@@ -18,6 +19,18 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getSelectedUser()
   }
 
+  getSelectedUser() {
+    this.selectedUser = this.getDataService.getSelectedUser()
+    console.log(this.selectedUser)
+  }
+
+
+
 }
+
+
+
+

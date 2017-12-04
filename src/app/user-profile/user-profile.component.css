@@ -1,0 +1,16 @@
+.mrg-btn-25 {
+  margin-bottom: 25px;
+}
+
+
+@media (max-width: 991px) {
+  .hidden-md-down {
+    display: none !important;
+  }
+}
+
+@media (min-width: 991px) {
+  .hidden-lg-up {
+    display: none !important;
+  }
+}

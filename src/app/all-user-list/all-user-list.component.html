@@ -35,7 +35,7 @@
 
 
 <div class="container-fluid-no-pd" *ngFor="let obj of allActiveUsers">
-  <div class="row">
+  <div class="row" (click)="onUserRow(obj)">
     <div class="col-xs-3 text-center">
       <div>{{obj['fn']}} {{obj['ln']}}</div>
     </div>
