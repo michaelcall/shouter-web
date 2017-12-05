@@ -30,8 +30,8 @@ export class getDataService {
     return this.http.get('http://localhost:3000/teams/all/active', {withCredentials: true});
   }
 
-  getAssociatedTeams() {
-    return this.http.get('http://localhost:3000/teams/v1/associated/:winner_id/:loser_id', {withCredentials: true});
+  getAssociatedTeams(winnerId, loserId) {
+    return this.http.get('http://localhost:3000/teams/v1/associated/' + winnerId + '/' + loserId, {withCredentials: true});
   }
 
 

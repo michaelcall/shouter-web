@@ -51,9 +51,76 @@
         [(ngModel)]="homeTeam">
         <option value="" selected>Home Team</option>
         <option *ngFor="let team of getAssociatedTeams" value="{{team['entity-id']}}">
-          {{team['name']}}
+          {{team['team-name']}} - {{team['team-state']}}, {{team['team-city']}}
         </option>
       </select>
+    </div>
+
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <label for="date" class="standard-label-styles"> Date </label>
+      <input
+        type="text"
+        id="date"
+        placeholder="00/00/0000"
+        [(ngModel)]="gameDate"
+        class="form-control standard-input-styles">
+    </div>
+
+    <!--WINNER STATS -->
+
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+     <div>WINNER STATS</div>
+    </div>
+
+    <div class="col-xs-5 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
+      <label for="winnerAtt" class="standard-label-styles"> Passing Attempts </label>
+      <input
+        type="text"
+        id="winnerAtt"
+        placeholder="number"
+        [(ngModel)]="winnerAtt"
+        class="form-control standard-input-styles">
+    </div>
+
+    <div class="col-xs-5 col-sm-4 col-md-3">
+      <label for="comp" class="standard-label-styles"> Completions </label>
+      <input
+        type="text"
+        id="comp"
+        placeholder="number"
+        [(ngModel)]="winnerComp"
+        class="form-control standard-input-styles">
+    </div>
+
+    <div class="col-xs-5 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
+      <label for="winnerYds" class="standard-label-styles"> Passing Yards </label>
+      <input
+        type="text"
+        id="winnerYds"
+        placeholder="number"
+        [(ngModel)]="winnerYds"
+        class="form-control standard-input-styles">
+    </div>
+
+
+    <div class="col-xs-5 col-sm-4 col-md-3">
+      <label for="winnerTd" class="standard-label-styles"> TD </label>
+      <input
+        type="text"
+        id="winnerTd"
+        placeholder="number"
+        [(ngModel)]="winnerTd"
+        class="form-control standard-input-styles">
+    </div>
+
+    <div class="col-xs-5 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
+      <label for="winnerInt" class="standard-label-styles"> INT </label>
+      <input
+        type="text"
+        id="winnerInt"
+        placeholder="number"
+        [(ngModel)]="winnerInt"
+        class="form-control standard-input-styles">
     </div>
 
 

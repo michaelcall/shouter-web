@@ -14,6 +14,15 @@ export class AddGameToUserComponent implements OnInit {
   winner:any
   loser:any
   homeTeam:any
+  gameDate:any
+
+  // variables for game winner
+  winnerAtt:any
+  winnerComp:any
+  winnerYds:any
+  winnerTd:any
+  winnerInt:any
+
   getAssociatedTeams:any
   allActiveUsers:any
 
@@ -48,17 +57,18 @@ export class AddGameToUserComponent implements OnInit {
   // GET ALL ASSOCIATED TEAMS TO THE WINNER AND LOSER
   getAllTeamsAssociated(winnerId, loserId) {
 
+    console.log('winner and loser ids')
     console.log(winnerId)
     console.log(loserId)
-    
-    // this.getDataService.getAssociatedTeams()
-    //   .subscribe(
-    //     (response:Response) => {
-    //       const data = response.json();
-    //       this.getAssociatedTeams = data.data
-    //     },
-    //     (error) => console.log(error)
-    //   )
+
+    this.getDataService.getAssociatedTeams(winnerId, loserId )
+      .subscribe(
+        (response:Response) => {
+          const data = response.json();
+          this.getAssociatedTeams = data.data
+        },
+        (error) => console.log(error)
+      )
   }
 
 
