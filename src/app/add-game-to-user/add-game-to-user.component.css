@@ -1,0 +1,20 @@
+.mrg-btn-25 {
+  margin-bottom: 25px;
+}
+
+
+.standard-label-styles {
+  font-size: 8px;
+  color: #444444;
+  font-weight: lighter;
+}
+
+.standard-input-styles {
+  font-size: 16px;
+  color: #444444 !important;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #444444;
+  margin-bottom: 15pt;
+  font-weight: bold;
+}

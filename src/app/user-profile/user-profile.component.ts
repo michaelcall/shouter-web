@@ -18,6 +18,12 @@ export class UserProfileComponent implements OnInit {
     private router: Router
   ) { }
 
+  isError(item){
+    if (item == null || item == undefined || item.length == 0 ) { return true }
+    else { return false }
+  }
+
+
   ngOnInit() {
     this.getSelectedUser()
   }
@@ -25,6 +31,18 @@ export class UserProfileComponent implements OnInit {
   getSelectedUser() {
     this.selectedUser = this.getDataService.getSelectedUser()
     console.log(this.selectedUser)
+  }
+
+  onAddGame() {
+
+    if (this.isError(this.selectedUser) == false) {
+      this.getDataService.saveSelectedUser( this.selectedUser )
+      this.router.navigate(['user-game'])
+    }
+    else {
+      alert('NO USER DATA - RETURN HOME')
+    }
+
   }
 
 

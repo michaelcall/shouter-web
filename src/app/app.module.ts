@@ -13,13 +13,15 @@ import { AllUserListComponent } from './all-user-list/all-user-list.component';
 import { HomeComponent } from './home/home.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AddGameToUserComponent } from './add-game-to-user/add-game-to-user.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'all-users-list', component: AllUserListComponent },
   { path: 'add-user', component: AddUserComponent },
-  { path: 'user-profile', component: UserProfileComponent }
+  { path: 'user-profile', component: UserProfileComponent },
+  { path: 'user-game', component: AddGameToUserComponent }
 
 ];
 
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
     AllUserListComponent,
     HomeComponent,
     AddUserComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AddGameToUserComponent
   ],
   imports: [
     BrowserModule,

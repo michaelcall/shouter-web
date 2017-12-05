@@ -14,7 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 
 export class AppComponent implements OnInit {
-   allActiveUsers:any;
+  parseLocation:any
 
   constructor(private getDataService: getDataService,
               private http: HttpClient,
@@ -22,19 +22,13 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.getAllQbUsersActive()
+    this.parseLocation = window.location.href.substr(window.location.href.lastIndexOf('/') + 1)
+    if (this.parseLocation != 'home') { this.router.navigate(['home']) }
+    else { return false }
+
   }
 
-  getAllQbUsersActive() {
-    this.getDataService.getAssociatedUsers()
-      .subscribe(
-        (response:Response) => {
-          const data = response.json();
-          this.allActiveUsers = data.data
-        },
-        (error) => console.log(error)
-      )
-  }
+
 
   routeAllUserList() {
     this.router.navigate(['all-users-list'])
