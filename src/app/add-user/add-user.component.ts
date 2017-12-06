@@ -51,7 +51,6 @@ export class AddUserComponent implements OnInit {
 
   addUser( obj ) {
     if (this.isRequired(obj) == true) {
-      console.log('yes')
       this.getDataService.postNewUser(obj)
       .subscribe(
         (response:Response) => {

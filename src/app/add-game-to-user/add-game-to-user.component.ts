@@ -23,6 +23,15 @@ export class AddGameToUserComponent implements OnInit {
   winnerTd:any
   winnerInt:any
 
+  // variables for game loser
+  loserAtt:any
+  loserComp:any
+  loserYds:any
+  loserTd:any
+  loserInt:any
+
+
+
   getAssociatedTeams:any
   allActiveUsers:any
 
@@ -31,6 +40,18 @@ export class AddGameToUserComponent implements OnInit {
     private router: Router
   ) { }
 
+
+  isRequired(obj){
+    for (var key in obj) {
+      if (obj[key] == undefined || obj[key] == null || obj[key].length == 0  ) {
+        console.log('false')
+        return false
+      }
+    }
+    console.log('true')
+    return true
+  }
+
   ngOnInit() {
     this.getSelectedUser()
     this.getAllQbUsersActive()
@@ -38,7 +59,6 @@ export class AddGameToUserComponent implements OnInit {
 
   getSelectedUser() {
     this.selectedUserObj = this.getDataService.getSelectedUser()
-    console.log( this.selectedUserObj )
   }
 
 
@@ -69,6 +89,23 @@ export class AddGameToUserComponent implements OnInit {
         },
         (error) => console.log(error)
       )
+  }
+
+  addGame(gameObj, winnerObj, loserObj) {
+
+    if (this.isRequired(gameObj) == false || this.isRequired(winnerObj) == false || this.isRequired(loserObj) == false  ) {
+      console.log('not safe')
+    }
+    else {
+      console.log('save')
+      this.getDataService.postNewGame(gameObj)
+        .subscribe(
+          (response:Response) => {
+            console.log(response);
+          },
+          (error) => console.log(error)
+        )
+    }
   }
 
 

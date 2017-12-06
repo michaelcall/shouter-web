@@ -41,7 +41,28 @@ export class getDataService {
     return this.http.post( 'http://localhost:3000/users/add', body, {withCredentials: true})
   }
 
+  postNewGame(obj) {
 
+    var date = new Date(obj['gameDate']).toISOString().substring(0, 10)
+    var body = {'home_team_id':obj['homeTeam'], 'winner_person_id':obj['winner'], 'losser_person_id':obj['loser'], 'date_sent':date }
+    console.log('body')
+    console.log(body)
+    return this.http.post( 'http://localhost:3000/games/add', body, {withCredentials: true})
+  }
+
+
+// { winner:winner, loser:loser, homeTeam:homeTeam, gameDate:gameDate },
+// { winnerAtt:winnerAtt, winnerComp:winnerComp, winnerYds:winnerYds, winnerTd:winnerTd, winnerInt:winnerInt },
+// { loserAtt:loserAtt, loserComp:loserComp, loserYds:loserYds, loserTd:loserTd, loserInt:loserInt }
+//
+//
+// winner_person_id
+// varchar(40)
+// losser_person_id
+// varchar(40)
+// date_sent
+// datetime
+// home_team_id
 
 
   // SELECTED USER FOR USER LIST TO USER PROFILE
