@@ -44,11 +44,9 @@ export class AddGameToUserComponent implements OnInit {
   isRequired(obj){
     for (var key in obj) {
       if (obj[key] == undefined || obj[key] == null || obj[key].length == 0  ) {
-        console.log('false')
         return false
       }
     }
-    console.log('true')
     return true
   }
 
@@ -76,11 +74,6 @@ export class AddGameToUserComponent implements OnInit {
 
   // GET ALL ASSOCIATED TEAMS TO THE WINNER AND LOSER
   getAllTeamsAssociated(winnerId, loserId) {
-
-    console.log('winner and loser ids')
-    console.log(winnerId)
-    console.log(loserId)
-
     this.getDataService.getAssociatedTeams(winnerId, loserId )
       .subscribe(
         (response:Response) => {
@@ -91,20 +84,38 @@ export class AddGameToUserComponent implements OnInit {
       )
   }
 
-  addGame(gameObj, winnerObj, loserObj) {
+  // POST GAME INFO
+  postGame(gameObj, gameId ) {
+    this.getDataService.postNewGame(gameObj, gameId)
+      .subscribe(
+        (response:Response) => {
+          console.log(response);
+        },
+        (error) => console.log(error)
+      )
+  }
 
+  // POST WINNER STATS
+  postWinner(winnerObj, gameId) {
+    this.getDataService.postWinner(winnerObj, gameId)
+      .subscribe(
+        (response:Response) => {
+          console.log(response);
+        },
+        (error) => console.log(error)
+      )
+  }
+
+  addGame(gameObj, winnerObj, loserObj) {
     if (this.isRequired(gameObj) == false || this.isRequired(winnerObj) == false || this.isRequired(loserObj) == false  ) {
       console.log('not safe')
+      return null
     }
     else {
-      console.log('save')
-      this.getDataService.postNewGame(gameObj)
-        .subscribe(
-          (response:Response) => {
-            console.log(response);
-          },
-          (error) => console.log(error)
-        )
+      let gameId = this.getDataService.idGenerator()
+      this.postGame(gameObj, gameId)
+      this.postWinner(winnerObj, gameId)
+
     }
   }
 
