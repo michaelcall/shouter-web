@@ -55,10 +55,10 @@ export class AddGameToUserComponent implements OnInit {
     this.getAllQbUsersActive()
   }
 
+  // ON INIT FUNCTION
   getSelectedUser() {
     this.selectedUserObj = this.getDataService.getSelectedUser()
   }
-
 
   // GET ALL ACTIVE USERS
   getAllQbUsersActive() {
@@ -106,16 +106,27 @@ export class AddGameToUserComponent implements OnInit {
       )
   }
 
+  // POST LOSER STATS
+  postLoser(loserObj, gameId) {
+    this.getDataService.postLoser(loserObj, gameId)
+      .subscribe(
+        (response:Response) => {
+          console.log(response);
+        },
+        (error) => console.log(error)
+      )
+  }
+
+  // ADD GAME TO DB
   addGame(gameObj, winnerObj, loserObj) {
-    if (this.isRequired(gameObj) == false || this.isRequired(winnerObj) == false || this.isRequired(loserObj) == false  ) {
-      console.log('not safe')
+    if (this.isRequired(gameObj) == false || this.isRequired(winnerObj) == false || this.isRequired(loserObj) == false ) {
       return null
     }
     else {
       let gameId = this.getDataService.idGenerator()
       this.postGame(gameObj, gameId)
       this.postWinner(winnerObj, gameId)
-
+      this.postLoser(loserObj, gameId)
     }
   }
 

@@ -14,6 +14,7 @@ export class AllUserListComponent implements OnInit {
 
   allActiveUsers:any
 
+
   constructor(
     private getDataService: getDataService,
     private router: Router
@@ -39,8 +40,15 @@ export class AllUserListComponent implements OnInit {
   }
 
   onUserRow(obj) {
-    this.getDataService.saveSelectedUser(obj)
-    this.router.navigate(['user-profile'])
+    if (this.getDataService.isError(obj) == false) {
+      this.getDataService.saveSelectedUser(obj)
+      this.router.navigate(['user-profile'])
+    }
+    else {
+      alert('NO USER OBJ- RETURN HOME')
+      return
+    }
+
   }
 
 }

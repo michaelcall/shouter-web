@@ -21,6 +21,11 @@ export class getDataService {
     });
   }
 
+  isError(item){
+    if (item == null || item == undefined || item.length == 0 ) { return true }
+    else { return false }
+  }
+
   constructor (private  http:Http) {}
 
 
@@ -42,6 +47,14 @@ export class getDataService {
     return this.http.get('http://localhost:3000/teams/v1/associated/' + winnerId + '/' + loserId, {withCredentials: true});
   }
 
+  getUserProfile(id) {
+    console.log('get user profile')
+    console.log(id)
+    return this.http.get('http://localhost:3000/users/v1/profile/' + id, {withCredentials: true});
+  }
+
+
+
 
   // POST CALLS FOR COMPONENTS
   postNewUser(obj) {
@@ -56,41 +69,39 @@ export class getDataService {
   }
 
   postWinner(obj, id) {
-    var body = {'game_id':id, 'person_id':obj['winner'], 'att_num':obj['winnerAtt'], 'comp_num':obj['winnerComp'], 'yds_num':obj['winnerYds'], 'winnerTd':obj['winnerYds'] }
-    console.log(body)
+    var body = {'game_id':id, 'person_id':obj['winner'], 'att_num':obj['winnerAtt'], 'comp_num':obj['winnerComp'], 'yds_num':obj['winnerYds'], 'td_num':obj['winnerTd'], 'int_num':obj['winnerInt'] }
     return this.http.post('http://localhost:3000/games/add/stats/winner', body, {withCredentials: true})
   }
 
-
-// { winnerAtt:winnerAtt, winnerComp:winnerComp, winnerYds:winnerYds, winnerTd:winnerTd, winnerInt:winnerInt },
-// { loserAtt:loserAtt, loserComp:loserComp, loserYds:loserYds, loserTd:loserTd, loserInt:loserInt }
-//
-//
-// winner_person_id
-// varchar(40)
-// losser_person_id
-// varchar(40)
-// date_sent
-// datetime
-// home_team_id
-
-
-// td
-//   entity_id
-//   person_id
-//   game_id
-//   td_num
-
-
-
-  // SELECTED USER FOR USER LIST TO USER PROFILE
-  saveSelectedUser(obj) {
-    this.userObj = obj
+  postLoser(obj, id) {
+    var body = {'game_id':id, 'person_id':obj['loser'], 'att_num':obj['loserAtt'], 'comp_num':obj['loserComp'], 'yds_num':obj['loserYds'], 'td_num':obj['loserTd'], 'int_num':obj['loserInt'] }
+    return this.http.post('http://localhost:3000/games/add/stats/loser', body, {withCredentials: true})
   }
 
-  // GET SELECTED USER FOR USER LIST TO USER PROFILE
+
+ // UI DATA
+
+  // SELECTED USER
+  saveSelectedUser(obj) {
+    console.log('save user data')
+    console.log(obj)
+
+    this.userObj = {data: obj}
+  }
+
+  // GET SELECTED USER
   getSelectedUser() {
-    return this.userObj
+    console.log('get user data')
+    console.log(this.userObj)
+
+    if (this.isError(this.userObj) == false) {
+      return this.userObj
+    }
+    else {
+      alert('NO USER DATA - GO HOME')
+      return
+    }
+
   }
 
 }
