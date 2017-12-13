@@ -28,7 +28,6 @@ export class getDataService {
 
   constructor (private  http:Http) {}
 
-
     // GET CALL FOR DATA
   getAssociatedUsers() {
     return this.http.get('http://localhost:3000/users', {withCredentials: true});
@@ -48,12 +47,8 @@ export class getDataService {
   }
 
   getUserProfile(id) {
-    console.log('get user profile')
-    console.log(id)
     return this.http.get('http://localhost:3000/users/v1/profile/' + id, {withCredentials: true});
   }
-
-
 
 
   // POST CALLS FOR COMPONENTS
@@ -78,22 +73,15 @@ export class getDataService {
     return this.http.post('http://localhost:3000/games/add/stats/loser', body, {withCredentials: true})
   }
 
-
  // UI DATA
 
   // SELECTED USER
   saveSelectedUser(obj) {
-    console.log('save user data')
-    console.log(obj)
-
-    this.userObj = {data: obj}
+   this.userObj = {data: obj}
   }
 
   // GET SELECTED USER
   getSelectedUser() {
-    console.log('get user data')
-    console.log(this.userObj)
-
     if (this.isError(this.userObj) == false) {
       return this.userObj
     }

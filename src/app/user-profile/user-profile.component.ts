@@ -13,7 +13,7 @@ export class UserProfileComponent implements OnInit {
   selectedUser:any
   profileName:string
   profileStatus:string
-  userData:any
+  userData:any = {wins: 0, 'games-played':0, loses:0 }
 
   constructor(
     private getDataService: getDataService,
@@ -27,19 +27,17 @@ export class UserProfileComponent implements OnInit {
 
   // GET USER PROFILE DATA
   getUserProfileData(selectedUser) {
-    if (selectedUser) {
-      this.getDataService.getUserProfile(selectedUser['entity-id'])
-        .subscribe(
-          (response:Response) => {
-            const data = response.json();
-            this.userData = data.data
-          },
-          (error) => console.log(error)
-        )
+    this.getDataService.getUserProfile(selectedUser['entity-id'])
+      .subscribe(
+        (response:Response) => {
+          const data = response.json();
+          this.userData = data.data
+        },
+        (error) => console.log(error)
+      )
 
-      this.profileName = selectedUser.fn + " " + selectedUser.ln
-      this.profileStatus = selectedUser['state-name']
-    }
+    this.profileName = selectedUser.fn + " " + selectedUser.ln
+    this.profileStatus = selectedUser['state-name']
   }
 
   // ON INIT FUNCTION - GET SELECTED USER
