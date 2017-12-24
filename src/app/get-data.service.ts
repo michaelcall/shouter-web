@@ -59,19 +59,21 @@ export class getDataService {
 
   postNewGame(obj, id) {
     var date = new Date(obj['gameDate']).toISOString().substring(0, 10)
-    var body = {'entity_id':id, 'home_team_id':obj['homeTeam'], 'winner_person_id':obj['winner'], 'losser_person_id':obj['loser'], 'date_sent':date }
+    var body = {'game_id':id, 'home_team_id':obj['homeTeam'], 'date_played':date, 'winner_id':obj['winner'], 'loser_id':obj['loser'] }
     return this.http.post( 'http://localhost:3000/games/add', body, {withCredentials: true})
   }
 
-  postWinner(obj, id) {
-    var body = {'game_id':id, 'person_id':obj['winner'], 'att_num':obj['winnerAtt'], 'comp_num':obj['winnerComp'], 'yds_num':obj['winnerYds'], 'td_num':obj['winnerTd'], 'int_num':obj['winnerInt'] }
-    return this.http.post('http://localhost:3000/games/add/stats/winner', body, {withCredentials: true})
+  postStatAssignments(wobj, lobj, id) {
+    var body = {'game_id':id, 'winner_id':wobj['winner'], 'watt_num':wobj['winnerAtt'], 'wcomp_num':wobj['winnerComp'], 'wyds_num':wobj['winnerYds'], 'wtd_num':wobj['winnerTd'], 'wint_num':wobj['winnerInt'],
+      'loser_id':lobj['loser'], 'latt_num':lobj['loserAtt'], 'lcomp_num':lobj['loserComp'], 'lyds_num':lobj['loserYds'], 'ltd_num':lobj['loserTd'], 'lint_num':lobj['loserInt']
+    }
+    return this.http.post('http://localhost:3000/games/add/v2/stat-assignments', body, {withCredentials: true})
   }
-
-  postLoser(obj, id) {
-    var body = {'game_id':id, 'person_id':obj['loser'], 'att_num':obj['loserAtt'], 'comp_num':obj['loserComp'], 'yds_num':obj['loserYds'], 'td_num':obj['loserTd'], 'int_num':obj['loserInt'] }
-    return this.http.post('http://localhost:3000/games/add/stats/loser', body, {withCredentials: true})
-  }
+  //
+  // postLoser(obj, id) {
+  //   var body = {'game_id':id, 'person_id':obj['loser'], 'att_num':obj['loserAtt'], 'comp_num':obj['loserComp'], 'yds_num':obj['loserYds'], 'td_num':obj['loserTd'], 'int_num':obj['loserInt'], 'outcome':0 }
+  //   return this.http.post('http://localhost:3000/games/add/v2/game-assignment', body, {withCredentials: true})
+  // }
 
  // UI DATA
 

@@ -96,8 +96,8 @@ export class AddGameToUserComponent implements OnInit {
   }
 
   // POST WINNER STATS
-  postWinner(winnerObj, gameId) {
-    this.getDataService.postWinner(winnerObj, gameId)
+  postStats(winnerObj, loserObj, gameId) {
+    this.getDataService.postStatAssignments(winnerObj, loserObj, gameId)
       .subscribe(
         (response:Response) => {
           console.log(response);
@@ -106,16 +106,16 @@ export class AddGameToUserComponent implements OnInit {
       )
   }
 
-  // POST LOSER STATS
-  postLoser(loserObj, gameId) {
-    this.getDataService.postLoser(loserObj, gameId)
-      .subscribe(
-        (response:Response) => {
-          console.log(response);
-        },
-        (error) => console.log(error)
-      )
-  }
+  // // POST LOSER STATS
+  // postLoser(loserObj, gameId) {
+  //   this.getDataService.postLoser(loserObj, gameId)
+  //     .subscribe(
+  //       (response:Response) => {
+  //         console.log(response);
+  //       },
+  //       (error) => console.log(error)
+  //     )
+  // }
 
   // ADD GAME TO DB
   addGame(gameObj, winnerObj, loserObj) {
@@ -124,11 +124,12 @@ export class AddGameToUserComponent implements OnInit {
     }
     else {
       let gameId = this.getDataService.idGenerator()
-      this.postGame(gameObj, gameId)
-      this.postWinner(winnerObj, gameId)
-      this.postLoser(loserObj, gameId)
+      this.postGame(gameObj, gameId )
+      this.postStats(winnerObj, loserObj, gameId)
+      // this.postLoser(loserObj, gameId)
     }
   }
+
 
 
 
